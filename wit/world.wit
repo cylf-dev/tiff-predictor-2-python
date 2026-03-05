@@ -1,0 +1,10 @@
+package cylf:tiff-predictor-2-python@0.1.0;
+
+interface codec {
+    encode: func(data: list<u8>, config: string) -> result<list<u8>, string>;
+    decode: func(data: list<u8>, config: string) -> result<list<u8>, string>;
+}
+
+world tiff-predictor-2-python {
+    export codec;
+}

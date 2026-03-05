@@ -1,0 +1,69 @@
+[project]
+name = "tiff-predictor-2-python"
+description = "TIFF Predictor=2 codec in Python, compiled to WebAssembly via componentize-py"
+readme = "README.md"
+requires-python = ">=3.13"
+dynamic = ["version"]
+dependencies = []
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff.lint]
+# https://docs.astral.sh/ruff/rules/
+ignore = [
+    "COM812",  # conflicts with ruff formatter
+]
+select = [
+    'B',
+    'BLE',
+    'C4',
+    'C90',
+    'COM',
+    'DTZ',
+    'E',
+    'ERA',
+    'F',
+    'FA',
+    'G',
+    'I',
+    'INP',
+    'N',
+    'NPY',
+    'PT',
+    'PTH',
+    'RET',
+    'RUF',
+    'S',
+    'SIM',
+    'T20',
+    'UP',
+    'W',
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["INP001", "S101"]  # no __init__.py needed; assert is fine in tests
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.mypy]
+ignore_missing_imports = true
+scripts_are_modules = true
+
+[dependency-groups]
+dev = [
+    "componentize-py>=0.21",
+    "mypy>=1.0",
+    "pre-commit>=4.0",
+    "pre-commit-hooks>=6.0",
+    "pytest>=9.0",
+    "ruff>=0.15",
+]

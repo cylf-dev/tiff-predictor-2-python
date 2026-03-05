@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+.mypy_cache/
+.pytest_cache/
+
+# componentize-py generated bindings and runtime stubs
+wit_world/
+componentize_py_async_support/
+componentize_py_runtime.pyi
+componentize_py_types.py
+poll_loop.py
+
+# built Wasm component
+*.wasm
+
+.vscode/

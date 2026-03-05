@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run tests
+        run: uv run pytest -v
+
+      - name: Build Wasm
+        run: |
+          uv run componentize-py \
+            --wit-path wit \
+            --world tiff-predictor-2-python \
+            componentize -p src app \
+            -o tiff-predictor-2-python.wasm
+
+      - uses: oras-project/setup-oras@v1
+
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | oras login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: Push OCI artifact to GHCR
+        run: |
+          oras push \
+            ghcr.io/cylf-dev/tiff-predictor-2-python:${{ github.event.release.tag_name }} \
+            --annotation "org.opencontainers.image.source=https://github.com/cylf-dev/tiff-predictor-2-python" \
+            --annotation "org.opencontainers.image.description=TIFF Predictor=2 horizontal differencing codec (Wasm Component)" \
+            --annotation "org.opencontainers.image.licenses=Apache-2.0" \
+            --annotation "org.opencontainers.image.revision=${{ github.sha }}" \
+            --annotation "org.opencontainers.image.version=${{ github.event.release.tag_name }}" \
+            tiff-predictor-2-python.wasm:application/wasm
+
+      - name: Upload Wasm to release
+        run: gh release upload "${{ github.event.release.tag_name }}" tiff-predictor-2-python.wasm
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

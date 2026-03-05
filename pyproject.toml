@@ -2,7 +2,7 @@
 name = "tiff-predictor-2-python"
 description = "TIFF Predictor=2 codec in Python, compiled to WebAssembly via componentize-py"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = "==3.13.*"
 dynamic = ["version"]
 dependencies = []
 

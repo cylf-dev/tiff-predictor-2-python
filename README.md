@@ -41,13 +41,12 @@ Both `encode` and `decode` take a byte array of pixel data and a JSON config str
 
 ## Prerequisites
 
-- [Python](https://www.python.org/) 3.13+
-- [uv](https://docs.astral.sh/uv/) (package manager)
+- [uv](https://docs.astral.sh/uv/)
 
 ## Build
 
 ```sh
-uv sync                    # install dev dependencies (includes componentize-py)
+uv sync
 uv run componentize-py \
     --wit-path wit \
     --world tiff-predictor-2-python \

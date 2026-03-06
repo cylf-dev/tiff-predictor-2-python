@@ -285,7 +285,8 @@ wheels = [
 
 [[package]]
 name = "tiff-predictor-2-python"
-source = { editable = "." }
+version = "0.1.0"
+source = { virtual = "." }
 
 [package.dev-dependencies]
 dev = [

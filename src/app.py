@@ -4,8 +4,9 @@ Bridges the WIT-generated Codec protocol to the pure-Python implementation
 in tiff_predictor_2.py.
 """
 
-import tiff_predictor_2
 from componentize_py_types import Err
+
+import tiff_predictor_2
 
 
 class Codec:

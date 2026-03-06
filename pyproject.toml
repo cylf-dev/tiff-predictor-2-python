@@ -2,19 +2,12 @@
 name = "tiff-predictor-2-python"
 description = "TIFF Predictor=2 codec in Python, compiled to WebAssembly via componentize-py"
 readme = "README.md"
+version = "0.1.0"
 requires-python = "==3.13.*"
-dynamic = ["version"]
 dependencies = []
 
-[build-system]
-requires = ["hatchling", "hatch-vcs"]
-build-backend = "hatchling.build"
-
-[tool.hatch.version]
-source = "vcs"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src"]
+[tool.ruff.lint.isort]
+known-third-party = ["componentize_py_types"]
 
 [tool.ruff.lint]
 # https://docs.astral.sh/ruff/rules/

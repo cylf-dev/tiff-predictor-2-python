@@ -43,6 +43,7 @@ select = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["INP001", "S101"]  # no __init__.py needed; assert is fine in tests
+"embed_signature.py" = ["INP001", "T20"]  # standalone CLI script; print is the interface
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

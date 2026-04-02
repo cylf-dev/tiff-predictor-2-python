@@ -38,6 +38,9 @@ jobs:
             componentize -p src app \
             -o tiff-predictor-2-python.wasm
 
+      - name: Embed codec signature
+        run: python3 embed_signature.py tiff-predictor-2-python.wasm signature.json
+
       - uses: oras-project/setup-oras@v1
 
       - name: Log in to GHCR

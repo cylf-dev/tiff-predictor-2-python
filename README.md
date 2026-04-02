@@ -56,6 +56,16 @@ uv run componentize-py \
 
 Output: `tiff-predictor-2-python.wasm`
 
+## Codec signature
+
+The `.wasm` binary includes an embedded `chonkle:signature` custom section declaring the codec's identifier, implementation name, and input/output ports. The signature is defined in [`signature.json`](signature.json) and embedded automatically by the release workflow.
+
+To embed locally after building:
+
+```sh
+python3 embed_signature.py tiff-predictor-2-python.wasm signature.json
+```
+
 ## Development
 
 ```sh

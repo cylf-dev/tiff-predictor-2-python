@@ -12,6 +12,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - Embedded `chonkle:signature` custom section in the Wasm binary, declaring codec metadata (identifier, implementation name, input/output port types).
 
+### Changed
+
+- Migrated WIT interface to match latest version used by `chonkle` (port-map based API).
+
 ## [v0.1.0] - 2026-03-05
 
 Initial release.

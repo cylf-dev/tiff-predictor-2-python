@@ -34,7 +34,7 @@ jobs:
         run: |
           uv run componentize-py \
             --wit-path wit \
-            --world tiff-predictor-2-python \
+            --world codec \
             componentize -p src app \
             -o tiff-predictor-2-python.wasm
 
